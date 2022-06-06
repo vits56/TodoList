@@ -1,25 +1,29 @@
-<p style="color: green"><%= notice %></p>
+<div class="container">
 
-<h1>Tasks</h1>
+  <p style="color: green"><%= notice %></p>
 
-<%= form_with(model: @task, class: "row g-3") do |form| %>
-  <div class="col-auto">
-    <%= form.label "Tarefa" %>
-    <%= form.text_field :name %>
-  </div>
+  <h1>Tasks</h1>
 
-  <div class="col-auto">
-    <%= form.button :submit, class: "btn btn-primary mb-3" %>
-  </div>
-<% end %>
+  <%= form_with(model: @task, class: "row g-3") do |form| %>
+    <div class="col-auto">
+      <%= form.label "Lista", class:"visually-hidden" %>
+      <%= form.text_field :name, class:"form-control" %>
+    </div>
+    <div class="col-auto">
+      <%= form.button :submit, class:"btn btn-primary mb-3" %>
+    </div>
+  <% end %>
+  <%= turbo_stream_from 'tasks' %>
 
-<h3>TO DO</h3>
-<%= turbo_frame_tag "todo_list" do %>
-  <%= render @tasks %> 
-<% end %>
+  <h3>TO DO</h3>
+  <%= turbo_frame_tag "todo_list" do %>
+    <%= render @tasks %>
+  <% end %>
 
-<h3>Done</h3>
-<%= turbo_frame_tag "done_list" do %>
-  <%= render @done_tasks %> 
-<% end %>
+  <h3>DONE</h3>
+  <%= turbo_frame_tag "done_list" do %>
+    <%= render @done_tasks %>
+  <% end %>
+
+</div>
 
