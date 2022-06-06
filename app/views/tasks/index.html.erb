@@ -2,6 +2,17 @@
 
 <h1>Tasks</h1>
 
+<%= form_with(model: @task, class: "row g-3") do |form| %>
+  <div class="col-auto">
+    <%= form.label "Tarefa" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="col-auto">
+    <%= form.button :submit, class: "btn btn-primary mb-3" %>
+  </div>
+<% end %>
+
 <div id="tasks">
   <% @tasks.each do |task| %>
     <%= render task %>
